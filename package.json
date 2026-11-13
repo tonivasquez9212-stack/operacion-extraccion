@@ -1,0 +1,11 @@
+{
+  "name": "operacion-extraccion",
+  "version": "1.0.0",
+  "description": "FPS 3D de supervivencia zombi - T3 Computación Gráfica y Visual (UPN)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node servidor.mjs",
+    "modelos": "node tools/generar_modelos.mjs"
+  }
+}

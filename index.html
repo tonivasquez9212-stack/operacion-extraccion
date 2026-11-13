@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operación Extracción — FPS 3D</title>
+  <link rel="stylesheet" href="src/estilos.css" />
+  <!-- Three.js se sirve desde la carpeta vendor/ (no requiere internet ni npm install) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/build/three.module.js",
+        "three/addons/": "./vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="lienzo"></canvas>
+
+  <!-- ====================== HUD ====================== -->
+  <div id="hud" class="oculto">
+    <div id="mira"><span></span><span></span><span></span><span></span></div>
+
+    <div id="panel-mision">
+      <div class="etiqueta">OBJETIVO</div>
+      <div id="objetivo">Llega a la zona de extracción</div>
+      <div class="fila">
+        <div id="brujula"><div id="flecha">▲</div></div>
+        <div><span id="distancia">0</span> m</div>
+      </div>
+      <div class="fila pequeno">Zombis eliminados: <b id="bajas">0</b> / <b id="total">0</b></div>
+      <div id="impulso" class="oculto"><div class="etiqueta">ADRENALINA</div><div class="barra"><i id="impulso-barra"></i></div></div>
+    </div>
+
+    <div id="panel-arma">
+      <div id="arma-nombre">—</div>
+      <div id="municion"><span id="balas">0</span><small>balas</small></div>
+      <div id="ranuras">
+        <div class="ranura" id="ranura-0"><kbd>1</kbd> <span class="n"></span> <b></b></div>
+        <div class="ranura" id="ranura-1"><kbd>2</kbd> <span class="n"></span> <b></b></div>
+      </div>
+    </div>
+
+    <div id="aviso"></div>
+  </div>
+
+  <!-- ====================== Pantalla de inicio ====================== -->
+  <div id="pantalla-inicio" class="pantalla">
+    <div class="caja">
+      <h1>OPERACIÓN <span>EXTRACCIÓN</span></h1>
+      <p class="sub">La zona de cuarentena ha caído. Atraviesa el complejo infestado,
+        administra tu munición y alcanza el helipuerto de extracción.</p>
+      <table class="controles">
+        <tr><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></td><td>Moverse</td></tr>
+        <tr><td>Mouse (o <kbd>←</kbd><kbd>→</kbd>)</td><td>Orientar la cámara</td></tr>
+        <tr><td>Clic izquierdo</td><td>Disparar (un disparo por clic)</td></tr>
+        <tr><td><kbd>1</kbd> / <kbd>2</kbd></td><td>Pistola / Rifle</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Pausa</td></tr>
+      </table>
+      <ul class="reglas">
+        <li>Cada zombi resiste <b>2 impactos</b>. Si uno te toca: <b>GAME OVER</b>.</li>
+        <li>No hay recarga: la munición solo se recupera recogiendo <b>cajas de munición</b>.</li>
+        <li>El rifle atraviesa hasta 2 zombis en línea, pero dispara lento y tiene pocas balas.</li>
+      </ul>
+      <button id="btn-iniciar" disabled>Cargando modelos…</button>
+    </div>
+  </div>
+
+  <div id="pantalla-pausa" class="pantalla oculto">
+    <div class="caja"><h2>PAUSA</h2><p>Haz clic para continuar</p></div>
+  </div>
+
+  <div id="pantalla-fin" class="pantalla oculto">
+    <div class="caja">
+      <h1 id="fin-titulo"></h1>
+      <p id="fin-texto" class="sub"></p>
+      <p id="fin-datos" class="datos"></p>
+      <button id="btn-reiniciar">Reintentar (Enter)</button>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

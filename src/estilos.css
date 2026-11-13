@@ -1,0 +1,68 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0f10; color: #e8ece9;
+  font-family: "Segoe UI", system-ui, sans-serif; user-select: none; }
+#lienzo { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.oculto { display: none !important; }
+kbd { display: inline-block; min-width: 1.6em; padding: 1px 6px; margin: 0 1px; text-align: center;
+  border: 1px solid #5d6b62; border-bottom-width: 3px; border-radius: 5px; background: #1b2320;
+  font: 600 0.85em Consolas, monospace; color: #d8f5c8; }
+
+/* ---------- HUD ---------- */
+#hud { position: fixed; inset: 0; pointer-events: none; text-shadow: 0 1px 3px #000; }
+#mira { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+#mira span { position: absolute; background: #e9ffe0; box-shadow: 0 0 3px #000; transition: background .1s; }
+#mira span:nth-child(1) { width: 2px; height: 9px; left: -1px; top: -15px; }
+#mira span:nth-child(2) { width: 2px; height: 9px; left: -1px; top: 6px; }
+#mira span:nth-child(3) { width: 9px; height: 2px; left: -15px; top: -1px; }
+#mira span:nth-child(4) { width: 9px; height: 2px; left: 6px; top: -1px; }
+#mira.impacto span { background: #ff3b30; }
+
+#panel-mision, #panel-arma { position: absolute; padding: 12px 16px; background: rgba(8, 14, 12, .62);
+  border: 1px solid rgba(140, 255, 150, .25); border-radius: 8px; }
+#panel-mision { left: 18px; top: 18px; min-width: 230px; }
+.etiqueta { font: 700 11px Consolas, monospace; letter-spacing: 2px; color: #7dff8a; }
+#objetivo { font-size: 15px; margin: 2px 0 6px; }
+.fila { display: flex; align-items: center; gap: 10px; font: 600 20px Consolas, monospace; }
+.fila.pequeno { font: 13px "Segoe UI", sans-serif; margin-top: 6px; color: #c5cfc8; }
+#brujula { width: 30px; height: 30px; border: 2px solid #7dff8a; border-radius: 50%; display: grid; place-items: center; }
+#flecha { color: #7dff8a; font-size: 14px; line-height: 1; }
+#impulso { margin-top: 8px; }
+.barra { height: 6px; background: #12303c; border-radius: 3px; overflow: hidden; margin-top: 3px; }
+.barra i { display: block; height: 100%; width: 100%; background: #18c8ff; }
+
+#panel-arma { right: 18px; bottom: 18px; min-width: 240px; text-align: right; }
+#arma-nombre { font: 700 13px Consolas, monospace; letter-spacing: 2px; color: #7dff8a; text-transform: uppercase; }
+#municion { font: 700 58px/1 Consolas, monospace; margin: 2px 0 8px; }
+#municion small { font-size: 14px; margin-left: 8px; color: #b8c4bb; }
+#municion.vacio { color: #ff3b30; }
+#ranuras { display: flex; gap: 8px; justify-content: flex-end; }
+.ranura { padding: 4px 8px; border: 1px solid #3a4840; border-radius: 6px; font-size: 13px; color: #9aa69e; }
+.ranura.activa { border-color: #7dff8a; color: #fff; background: rgba(125, 255, 138, .12); }
+
+#aviso { position: absolute; left: 50%; top: 66%; transform: translateX(-50%); padding: 8px 18px;
+  font: 700 18px Consolas, monospace; letter-spacing: 1px; background: rgba(0, 0, 0, .55);
+  border-radius: 6px; opacity: 0; transition: opacity .25s; white-space: nowrap; }
+#aviso.visible { opacity: 1; }
+#aviso.alerta { color: #ff5a4d; }
+#aviso.bueno { color: #ffe066; }
+
+/* ---------- Pantallas ---------- */
+.pantalla { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px;
+  background: radial-gradient(ellipse at center, rgba(6, 12, 10, .78), rgba(0, 0, 0, .94)); z-index: 10; }
+.pantalla .caja { max-width: 620px; text-align: center; }
+h1 { font: 800 clamp(34px, 7vw, 64px)/1 Consolas, monospace; letter-spacing: 3px; margin: 0 0 14px; }
+h1 span { color: #7dff8a; }
+h2 { font: 800 44px Consolas, monospace; letter-spacing: 6px; margin: 0; }
+.sub { font-size: 17px; line-height: 1.5; color: #c9d3cc; margin: 0 0 18px; }
+.datos { font: 15px Consolas, monospace; color: #9fb0a5; }
+.controles { margin: 0 auto 14px; border-collapse: collapse; font-size: 15px; }
+.controles td { padding: 5px 12px; text-align: left; }
+.controles td:first-child { text-align: right; color: #d8f5c8; font-weight: 600; }
+.reglas { text-align: left; font-size: 14px; color: #b9c4bc; line-height: 1.6; margin: 0 auto 22px; max-width: 520px; }
+button { pointer-events: auto; cursor: pointer; padding: 14px 38px; font: 800 18px Consolas, monospace;
+  letter-spacing: 2px; color: #06140a; background: #7dff8a; border: 0; border-radius: 8px; }
+button:hover:not(:disabled) { background: #a8ffb0; }
+button:disabled { background: #44524a; color: #9aa69e; cursor: wait; }
+#pantalla-fin.derrota h1 { color: #ff3b30; text-shadow: 0 0 30px rgba(255, 40, 30, .6); }
+#pantalla-fin.derrota { background: radial-gradient(ellipse at center, rgba(70, 0, 0, .7), rgba(10, 0, 0, .96)); }
+#pantalla-fin.victoria h1 { color: #7dff8a; text-shadow: 0 0 30px rgba(90, 255, 120, .5); }
