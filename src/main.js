@@ -1,27 +1,10 @@
-// ============================================================================
-//  OPERACIÓN EXTRACCIÓN — FPS 3D de supervivencia zombi (Three.js / WebGL)
-//  T3 · Computación Gráfica y Visual · UPN
-//
-//  Índice del archivo (cada bloque corresponde a un requerimiento funcional):
-//    1. CONFIG ............ parámetros ajustables del juego
-//    2. MAPA .............. diseño del nivel en una cuadrícula (RF03 / RF08)
-//    3. Escena y luces
-//    4. Audio sintetizado
-//    5. Construcción del mundo (RF03)
-//    6. Jugador y cámara FPS (RF06)
-//    7. Armas y munición (RF01 / RF02)
-//    8. Disparo con raycasting (RF07)
-//    9. Zombis: detección y persecución (RF04 / RF05)
-//   10. Coleccionables (RF10)
-//   11. Victoria / Game Over (RF08 / RF09)
-//   12. HUD y bucle principal
-// ============================================================================
+
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// ----------------------------------------------------------------------------
-// 1. CONFIG — todos los valores de dificultad se ajustan aquí (RF11)
-// ----------------------------------------------------------------------------
+
+// 1. CONFIG — todos los valores de dificultad aj
+
 const CONFIG = {
   celda: 3,            // tamaño en metros de cada casilla del mapa
   alturaMuro: 3.6,
@@ -95,9 +78,9 @@ function moverConColision(pos, dx, dz, r) {
   if (!hayColision(pos.x, pos.z + dz, r)) pos.z += dz;
 }
 
-// ----------------------------------------------------------------------------
+
 // 3. Escena, cámara, renderizador y luces
-// ----------------------------------------------------------------------------
+
 const lienzo = document.getElementById('lienzo');
 const renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -287,10 +270,8 @@ addEventListener('keydown', (e) => {
 addEventListener('keyup', (e) => teclas.delete(e.code));
 addEventListener('blur', () => teclas.clear());
 
-// El mouse orienta la cámara (solo con el puntero capturado)
-// Lo normal es capturar el puntero (Pointer Lock). Si el navegador no lo permite
-// (p. ej. dentro de un iframe o un panel de vista previa) se activa el "modo libre":
-// el mouse orienta la cámara sin captura y los bordes de la pantalla siguen girando.
+// El mouse 
+
 let modoLibre = false;
 let cursorX = 0.5; // posición horizontal del cursor (0..1), usada en modo libre
 addEventListener('mousemove', (e) => {
@@ -346,9 +327,8 @@ function actualizarJugador(dt) {
   camara.rotation.set(jugador.pitch, jugador.yaw, 0);
 }
 
-// ----------------------------------------------------------------------------
-// 7. Armas y munición (RF01 / RF02)
-// ----------------------------------------------------------------------------
+
+// 7. Armas y munición 
 const armas = [];        // { cfg, municion, soporte, fogonazo }
 let armaActual = 0, armaVisible = 0;
 let enfriamiento = 0;    // tiempo restante hasta poder volver a disparar
@@ -363,8 +343,7 @@ const texFogonazo = texturaCanvas(64, (g, t) => {
 
 function crearArmas(modelos) {
   CONFIG.armas.forEach((cfg, i) => {
-    // El modelo GLB se cuelga de la CÁMARA: así hereda su posición y rotación
-    // y siempre queda en la misma posición relativa a la vista del jugador.
+
     const soporte = new THREE.Group();
     const modelo = modelos[cfg.id].scene;
     soporte.add(modelo);
@@ -476,9 +455,9 @@ function chispa(punto, color) {
   escena.add(efecto(m, 0.22));
 }
 
-// ----------------------------------------------------------------------------
-// 9. Zombis (RF04 / RF05): modelo GLB, detección por distancia y persecución
-// ----------------------------------------------------------------------------
+
+// 9. Zombis modelos 
+
 const zombis = [];
 let modeloZombi = null;
 
