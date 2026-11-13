@@ -28,11 +28,8 @@ const CONFIG = {
   radioRecogida: 1.4,
 };
 
-// ----------------------------------------------------------------------------
-// 2. MAPA — '#' muro · '.' suelo · 'C' contenedor (obstáculo bajo) · 'S' inicio
-//    'E' extracción · 'Z' zombi · 'R' zombi corredor · 'A' munición · 'V' adrenalina
-//    Recorrido: búnker de inicio → almacén → patio → laboratorios → muelle → helipuerto
-// ----------------------------------------------------------------------------
+
+// 2. MAPA — 
 const MAPA = [
   '###############################',
   '#...#.........#...............#',
