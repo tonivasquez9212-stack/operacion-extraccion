@@ -6,7 +6,9 @@ Videojuego de disparos en primera persona desarrollado con **Three.js (WebGL)**.
 La zona de cuarentena ha caído: atraviesa un complejo infestado de zombis, administra tu
 munición y alcanza el helipuerto de extracción antes de ser atrapado.
 
-> **Repositorio:** _(pega aquí el enlace de GitHub)_ · **Video:** _(pega aquí el enlace)_ · **Demo web (opcional):** _(enlace de GitHub Pages)_
+> **Repositorio:** https://github.com/tonivasquez9212-stack/operacion-extraccion
+> **Jugar en línea:** https://tonivasquez9212-stack.github.io/operacion-extraccion/
+> **Video:** _(pega aquí el enlace)_
 
 ---
 
@@ -16,7 +18,7 @@ Requisito: [Node.js](https://nodejs.org) 18 o superior. No hay que instalar depe
 (Three.js ya viene incluido en `vendor/`).
 
 ```bash
-git clone <URL-del-repositorio>
+git clone https://github.com/tonivasquez9212-stack/operacion-extraccion.git
 cd operacion-extraccion
 npm start
 ```
